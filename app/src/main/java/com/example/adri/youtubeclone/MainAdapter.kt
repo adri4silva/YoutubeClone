@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.video_row.view.*
 
 /**
@@ -30,7 +31,15 @@ class MainAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolde
         val video = homeFeed.videos[position]
         val channel = video.channel
         holder?.view?.textView_video_title?.text = video.name
-        holder?.view?.imageView_user
+        holder?.view?.textView_channel_name?.text = channel.name
+
+        val videoImage = holder?.view?.imageView_video
+        val channelImage = holder?.view?.imageView_user
+
+        println(video.imageUrl)
+
+        Picasso.with(holder?.view?.context).load(video.imageUrl).into(videoImage)
+        Picasso.with(holder?.view?.context).load(channel.profileImageUrl).into(channelImage)
 
     }
 }
