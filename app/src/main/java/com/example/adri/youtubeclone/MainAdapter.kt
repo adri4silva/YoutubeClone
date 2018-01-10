@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.video_row.view.*
  */
 
 class MainAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>() {
-    
+
     // numberOfItems
     override fun getItemCount(): Int {
         return homeFeed.videos.size
@@ -49,6 +49,7 @@ class CustomViewHolder(val view: View, var video: Video? = null) : RecyclerView.
 
     companion object {
         val VIDEO_TITLE_KEY = "VIDEO_TITLE"
+        val VIDEO_ID_KEY = "VIDEO_ID"
     }
 
     init {
@@ -56,6 +57,7 @@ class CustomViewHolder(val view: View, var video: Video? = null) : RecyclerView.
             val intent = Intent(view.context, CourseDetailActivity::class.java)
             // passing data between activities
             intent.putExtra(VIDEO_TITLE_KEY, video?.name)
+            intent.putExtra(VIDEO_ID_KEY, video?.id)
             view.context.startActivity(intent)
         }
     }

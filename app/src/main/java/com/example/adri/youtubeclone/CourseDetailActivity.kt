@@ -27,6 +27,7 @@ class CourseDetailActivity : AppCompatActivity() {
 
         recyclerView_main.layoutManager = LinearLayoutManager(this)
 
+
         // change the nav bar title
         val navBarTitle = intent.getStringExtra(CustomViewHolder.VIDEO_TITLE_KEY)
         supportActionBar?.title = navBarTitle
@@ -36,7 +37,7 @@ class CourseDetailActivity : AppCompatActivity() {
     }
 
     private fun fetchJSON() {
-        val videoId = intent.getIntExtra(CustomViewHolder.VIDEO_TITLE_KEY, -1)
+        val videoId = intent.getIntExtra(CustomViewHolder.VIDEO_ID_KEY, -1)
         val courseDetailUrl = "https://api.letsbuildthatapp.com/youtube/course_detail?id=" + videoId
         println(videoId)
         val client = OkHttpClient()
@@ -49,6 +50,7 @@ class CourseDetailActivity : AppCompatActivity() {
             override fun onResponse(call: Call?, response: Response?) {
                 val body = response?.body()?.string()
                 val gson = GsonBuilder().create()
+                println("This " + body)
 
                 val lessons = gson.fromJson(body, Array<Lesson>::class.java)
 
