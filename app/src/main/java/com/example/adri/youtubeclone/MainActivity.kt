@@ -14,9 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //recyclerView_main.setBackgroundColor(Color.BLUE)
         recyclerView_main.layoutManager = LinearLayoutManager(this)
-        //recyclerView_main.adapter = MainAdapter()
 
         fetchJSON()
     }
@@ -50,8 +48,4 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class HomeFeed(val videos: List<Video>)
 
-class Video(val id: Int, val name: String, val link: String, val imageURL: String, val numberOfViews: Int, val channel: Channel)
-
-class Channel(val name: String, val profileImageUrl: String, val numberOfSubscribers: Int)
