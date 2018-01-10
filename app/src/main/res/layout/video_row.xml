@@ -5,13 +5,14 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView_video"
+        android:id="@+id/imageView_video_lesson"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="TODO"
+        app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,15 +26,17 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Video Title"
+        android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView_user"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_video" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_video_lesson" />
 
     <TextView
         android:id="@+id/textView_channel_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:paddingBottom="16dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/textView_video_title"
         app:layout_constraintStart_toStartOf="@+id/textView_video_title"
@@ -46,6 +49,15 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_video"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_video_lesson"
         app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
