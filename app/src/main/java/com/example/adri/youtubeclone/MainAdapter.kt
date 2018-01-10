@@ -1,5 +1,6 @@
 package com.example.adri.youtubeclone
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +13,7 @@ import kotlinx.android.synthetic.main.video_row.view.*
  */
 
 class MainAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>() {
-
-    val videoTitles = listOf<String>("Perfect Holiday!", "The Best Winter Sport", "Hanging Out With My Friends", "Getting Graduated!", "Going Dinner, You Wont Believe What Happened Later!", "Hola Diana!")
-
+    
     // numberOfItems
     override fun getItemCount(): Int {
         return homeFeed.videos.size
@@ -31,9 +30,9 @@ class MainAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolde
         val video = homeFeed.videos[position]
         val channel = video.channel
         holder?.view?.textView_video_title?.text = video.name
-        holder?.view?.textView_channel_name?.text = channel.name
+        holder?.view?.textView_channel_name?.text = channel.name + "  ∙  " + video.numberOfViews + " views\n 4 days ago"
 
-        val videoImage = holder?.view?.imageView_video
+        val videoImage = holder?.view?.imageView_video_lesson
         val channelImage = holder?.view?.imageView_user
 
         println(video.imageUrl)
@@ -41,9 +40,24 @@ class MainAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolde
         Picasso.with(holder?.view?.context).load(video.imageUrl).into(videoImage)
         Picasso.with(holder?.view?.context).load(channel.profileImageUrl).into(channelImage)
 
+        holder?.video = video
+
     }
 }
 
-class CustomViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+class CustomViewHolder(val view: View, var video: Video? = null) : RecyclerView.ViewHolder(view) {
+
+    companion object {
+        val VIDEO_TITLE_KEY = "VIDEO_TITLE"
+    }
+
+    init {
+        view.setOnClickListener {
+            val intent = Intent(view.context, CourseDetailActivity::class.java)
+            // passing data between activities
+            intent.putExtra(VIDEO_TITLE_KEY, video?.name)
+            view.context.startActivity(intent)
+        }
+    }
 
 }
